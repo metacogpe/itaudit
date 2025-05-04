@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보시스템 감리 컨설팅 앱</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 사이드바 네비게이션 -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>감리지원<span>PRO</span></h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> 대시보드
+                </li>
+                <li class="nav-item" data-section="projects">
+                    <i class="fas fa-clipboard-list"></i> 감리 프로젝트
+                </li>
+                <li class="nav-item" data-section="checklists">
+                    <i class="fas fa-tasks"></i> 체크리스트
+                </li>
+                <li class="nav-item" data-section="reports">
+                    <i class="fas fa-file-alt"></i> 보고서
+                </li>
+                <li class="nav-item" data-section="calculator">
+                    <i class="fas fa-calculator"></i> 감리비 계산기
+                </li>
+                <li class="nav-item" data-section="guides">
+                    <i class="fas fa-book"></i> 가이드 및 사례
+                </li>
+                <li class="nav-item" data-section="regulations">
+                    <i class="fas fa-gavel"></i> 법령 및 기준
+                </li>
+            </ul>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <p class="user-name">사용자</p>
+                    <p class="user-role">감리 컨설턴트</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="감리 프로젝트, 체크리스트, 가이드 검색...">
+                </div>
+                <div class="top-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- 대시보드 섹션 -->
+            <section id="dashboard" class="content-section active">
+                <h2 class="section-title">대시보드</h2>
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>진행 중인 감리</h3>
+                            <p class="stat-number">5</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>완료된 감리</h3>
+                            <p class="stat-number">12</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>미해결 이슈</h3>
+                            <p class="stat-number">8</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>예정된 감리</h3>
+                            <p class="stat-number">3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>월별 감리 현황</h3>
+                        <div class="chart" id="monthlyChart">
+                            <!-- 차트가 여기에 로드됩니다 -->
+                            <canvas id="monthlyChartCanvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>카테고리별 이슈</h3>
+                        <div class="chart" id="issuesChart">
+                            <!-- 차트가 여기에 로드됩니다 -->
+                            <canvas id="issuesChartCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activities">
+                    <h3>최근 활동</h3>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-text">클라우드 시스템 감리 보고서가 업데이트 되었습니다.</p>
+                                <p class="activity-time">10분 전</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-text">보안 체크리스트 3건이 추가되었습니다.</p>
+                                <p class="activity-time">1시간 전</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-comment-alt"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-text">OO기관 감리 프로젝트에 새 댓글이 달렸습니다.</p>
+                                <p class="activity-time">3시간 전</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 감리 프로젝트 섹션 -->
+            <section id="projects" class="content-section">
+                <h2 class="section-title">감리 프로젝트</h2>
+                <div class="section-actions">
+                    <button class="primary-btn" id="addProjectBtn">
+                        <i class="fas fa-plus"></i> 새 프로젝트
+                    </button>
+                </div>
+                
+                <div class="projects-filters">
+                    <select id="projectStatusFilter">
+                        <option value="all">모든 상태</option>
+                        <option value="planning">계획 중</option>
+                        <option value="in-progress">진행 중</option>
+                        <option value="completed">완료됨</option>
+                    </select>
+                    <input type="text" placeholder="프로젝트 검색" id="projectSearchInput">
+                </div>
+                
+                <div class="projects-list">
+                    <!-- 프로젝트 카드들이 여기에 로드됩니다 -->
+                </div>
+            </section>
+
+            <!-- 체크리스트 섹션 -->
+            <section id="checklists" class="content-section">
+                <h2 class="section-title">체크리스트</h2>
+                <div class="section-actions">
+                    <button class="primary-btn" id="addChecklistBtn">
+                        <i class="fas fa-plus"></i> 새 체크리스트
+                    </button>
+                </div>
+                
+                <div class="checklist-categories">
+                    <button class="category-btn active" data-category="all">전체</button>
+                    <button class="category-btn" data-category="planning">기획/분석</button>
+                    <button class="category-btn" data-category="development">개발</button>
+                    <button class="category-btn" data-category="security">보안</button>
+                    <button class="category-btn" data-category="performance">성능</button>
+                    <button class="category-btn" data-category="operation">운영</button>
+                </div>
+                
+                <div class="checklists-container">
+                    <!-- 체크리스트 아이템들이 여기에 로드됩니다 -->
+                </div>
+            </section>
+
+            <!-- 보고서 섹션 -->
+            <section id="reports" class="content-section">
+                <h2 class="section-title">보고서</h2>
+                <div class="section-actions">
+                    <button class="primary-btn" id="createReportBtn">
+                        <i class="fas fa-plus"></i> 새 보고서 작성
+                    </button>
+                </div>
+                
+                <div class="reports-container">
+                    <!-- 보고서 목록이 여기에 로드됩니다 -->
+                </div>
+            </section>
+
+            <!-- 감리비 계산기 섹션 -->
+            <section id="calculator" class="content-section">
+                <h2 class="section-title">감리비 계산기</h2>
+                
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="projectType">사업 유형</label>
+                            <select id="projectType">
+                                <option value="sw-dev">소프트웨어 개발</option>
+                                <option value="db-construction">데이터베이스 구축</option>
+                                <option value="hw-implementation">하드웨어 도입</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectScale">사업 규모 (백만원)</label>
+                            <input type="number" id="projectScale" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="auditComplexity">감리 난이도</label>
+                            <select id="auditComplexity">
+                                <option value="low">낮음</option>
+                                <option value="medium">중간</option>
+                                <option value="high">높음</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="auditPeriod">감리 기간 (일)</label>
+                            <input type="number" id="auditPeriod" min="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="auditorCount">감리원 수</label>
+                            <input type="number" id="auditorCount" min="1">
+                        </div>
+                        
+                        <button class="primary-btn" id="calculateBtn">계산하기</button>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <h3>감리비 산출 결과</h3>
+                        <div class="result-details" id="calculationResult">
+                            <p>결과가 여기에 표시됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 가이드 및 사례 섹션 -->
+            <section id="guides" class="content-section">
+                <h2 class="section-title">가이드 및 사례</h2>
+                
+                <div class="guides-tabs">
+                    <button class="guide-tab active" data-tab="procedures">감리 절차</button>
+                    <button class="guide-tab" data-tab="best-practices">모범 사례</button>
+                    <button class="guide-tab" data-tab="case-studies">사례 연구</button>
+                    <button class="guide-tab" data-tab="templates">템플릿</button>
+                </div>
+                
+                <div class="guides-content">
+                    <!-- 가이드 콘텐츠가 여기에 로드됩니다 -->
+                </div>
+            </section>
+
+            <!-- 법령 및 기준 섹션 -->
+            <section id="regulations" class="content-section">
+                <h2 class="section-title">법령 및 기준</h2>
+                
+                <div class="regulations-tabs">
+                    <button class="regulation-tab active" data-tab="laws">전자정부법</button>
+                    <button class="regulation-tab" data-tab="standards">감리기준</button>
+                    <button class="regulation-tab" data-tab="guidelines">감리 가이드라인</button>
+                    <button class="regulation-tab" data-tab="notices">행정안전부 고시</button>
+                </div>
+                
+                <div class="regulations-content">
+                    <!-- 법령 및 기준 콘텐츠가 여기에 로드됩니다 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 모달 컴포넌트 -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>새 감리 프로젝트</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="projectForm">
+                    <div class="form-group">
+                        <label for="projectName">프로젝트명</label>
+                        <input type="text" id="projectName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectClient">발주기관</label>
+                        <input type="text" id="projectClient" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectVendor">사업자</label>
+                        <input type="text" id="projectVendor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectBudget">사업 예산(백만원)</label>
+                        <input type="number" id="projectBudget" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectStart">시작일</label>
+                        <input type="date" id="projectStart" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectEnd">종료일</label>
+                        <input type="date" id="projectEnd" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">프로젝트 설명</label>
+                        <textarea id="projectDescription" rows="4"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn cancel-btn">취소</button>
+                        <button type="submit" class="primary-btn">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 차트 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- 앱 스크립트 -->
+    <script src="app.js"></script>
+</body>
+</html>
